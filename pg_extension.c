@@ -2,12 +2,15 @@
 #include "fmgr.h"
 #include "utils/builtins.h"
 #include <stdint.h>
+#include "out/libgoextension.h"
 
 PG_MODULE_MAGIC;
 
+/*
 extern char* goBasename(char*);
 extern bool goRegexpMatch(char*,char*);
 extern int64_t goPhashDistance(int64_t, int64_t);
+*/
 
 PG_FUNCTION_INFO_V1(Basename);
 

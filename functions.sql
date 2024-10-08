@@ -6,8 +6,6 @@ CREATE OR REPLACE FUNCTION phash_distance(int8, int8) RETURNS int8
 	AS :MOD, 'PhashDistance'
 	LANGUAGE C STRICT;
 
-CREATE OR REPLACE FUNCTION regexp_match(text, text) RETURNS boolean 
+CREATE OR REPLACE FUNCTION regexp(text, text) RETURNS boolean 
 	AS :MOD,'RegexpMatch'
 	LANGUAGE C STRICT;
-
--- CREATE OPERATOR FOR regexp
