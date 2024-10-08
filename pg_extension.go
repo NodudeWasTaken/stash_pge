@@ -12,6 +12,10 @@ import (
 
 // https://gist.github.com/zchee/b9c99695463d8902cd33
 
+const regexCacheSize = 10
+
+var regexCache *lru.Cache[string, *regexp.Regexp]
+
 //export goBasename
 func goBasename(input *C.char) *C.char {
 	arg1 := C.GoString(input)
@@ -22,9 +26,9 @@ func goBasename(input *C.char) *C.char {
 }
 
 //export goRegexpMatch
-func goRegexpMatch(input1 *C.char, input2 *C.char) bool {
-	input := C.GoString(input1)
-	pattern := C.GoString(input2)
+func goRegexpMatch(cpattern *C.char, cinput *C.char) bool {
+	input := C.GoString(cinput)
+	pattern := C.GoString(cpattern)
 
 	compiled, ok := regexCache.Get(pattern)
 	if !ok {
@@ -56,10 +60,6 @@ func goPhashDistance(input1 C.longlong, input2 C.longlong) C.longlong {
 
 	return C.longlong(val)
 }
-
-const regexCacheSize = 10
-
-var regexCache *lru.Cache[string, *regexp.Regexp]
 
 func main() {
 	regexCache, _ = lru.New[string, *regexp.Regexp](regexCacheSize)

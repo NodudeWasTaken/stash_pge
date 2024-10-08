@@ -28,7 +28,7 @@ PG_FUNCTION_INFO_V1(RegexpMatch);
 
 Datum RegexpMatch(PG_FUNCTION_ARGS) {
     text *arg1 = PG_GETARG_TEXT_PP(0);
-    text *arg2 = PG_GETARG_TEXT_PP(2);
+    text *arg2 = PG_GETARG_TEXT_PP(1);
     char *input1 = text_to_cstring(arg1);
     char *input2 = text_to_cstring(arg2);
 
