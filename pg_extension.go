@@ -1,5 +1,8 @@
 package main
 
+/*
+#include <stdbool.h> // for C bool
+*/
 import "C"
 import (
 	"fmt"
@@ -26,7 +29,7 @@ func goBasename(input *C.char) *C.char {
 }
 
 //export goRegexpMatch
-func goRegexpMatch(cpattern *C.char, cinput *C.char) bool {
+func goRegexpMatch(cpattern *C.char, cinput *C.char) C.bool {
 	input := C.GoString(cinput)
 	pattern := C.GoString(cpattern)
 
@@ -36,12 +39,12 @@ func goRegexpMatch(cpattern *C.char, cinput *C.char) bool {
 		compiled, err = regexp.Compile(pattern)
 		if err != nil {
 			fmt.Printf("RegexpMatch error: %v", err)
-			return false
+			return C.bool(false)
 		}
 		regexCache.Add(pattern, compiled)
 	}
 
-	return compiled.MatchString(input)
+	return C.bool(compiled.MatchString(input))
 }
 
 func phashDistanceFn(phash1 int64, phash2 int64) (int64, error) {
@@ -61,6 +64,9 @@ func goPhashDistance(input1 C.longlong, input2 C.longlong) C.longlong {
 	return C.longlong(val)
 }
 
-func main() {
+//export goInit
+func goInit() {
 	regexCache, _ = lru.New[string, *regexp.Regexp](regexCacheSize)
 }
+
+func main() {}
