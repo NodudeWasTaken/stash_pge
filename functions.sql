@@ -9,3 +9,7 @@ CREATE OR REPLACE FUNCTION phash_distance(int8, int8) RETURNS int8
 CREATE OR REPLACE FUNCTION regexp(text, text) RETURNS boolean 
 	AS :MOD,'RegexpMatch'
 	LANGUAGE C STRICT;
+
+CREATE OR REPLACE FUNCTION strftime(text, date) RETURNS text 
+	AS :MOD,'FormatDate'
+	LANGUAGE C STRICT;
