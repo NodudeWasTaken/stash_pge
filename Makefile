@@ -1,6 +1,7 @@
 #!/bin/bash
 
-PGINC=/usr/include/postgresql/14/server/
+PGVER=14
+PGINC=/usr/include/postgresql/$(PGVER)/server/
 DBNAME=stash
 
 export CGO_ENABLED=1
