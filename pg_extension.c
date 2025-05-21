@@ -8,17 +8,6 @@
 
 PG_MODULE_MAGIC;
 
-PG_FUNCTION_INFO_V1(Basename);
-
-Datum Basename(PG_FUNCTION_ARGS) {
-	char *input = text_to_cstring(PG_GETARG_TEXT_PP(0));
-
-	char *val = goBasename(input);
-
-	text *result = cstring_to_text(val);
-	PG_RETURN_TEXT_P(result);
-}
-
 PG_FUNCTION_INFO_V1(PhashDistance);
 
 Datum PhashDistance(PG_FUNCTION_ARGS) {

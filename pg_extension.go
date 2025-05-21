@@ -6,21 +6,11 @@ package main
 import "C"
 import (
 	"fmt"
-	"path/filepath"
 
 	"github.com/corona10/goimagehash"
 )
 
 // https://gist.github.com/zchee/b9c99695463d8902cd33
-
-//export goBasename
-func goBasename(input *C.char) *C.char {
-	arg1 := C.GoString(input)
-
-	base := filepath.Base(arg1)
-
-	return C.CString(base)
-}
 
 func phashDistanceFn(phash1 int64, phash2 int64) (int64, error) {
 	hash1 := goimagehash.NewImageHash(uint64(phash1), goimagehash.PHash)
