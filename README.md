@@ -37,10 +37,10 @@ sudo apt-get install build-essential golang postgresql-server-dev-14
 
 ## Usage
 
-Once installed, you can use the `PhashDistance` function in your SQL queries.
+Once installed, you can use the `phash_distance` function in your SQL queries.
 
 **Example:**
 ```sql
-SELECT PhashDistance(1234567890, 9876543210);
+SELECT phash_distance(1234567890, 9876543210);
 ```
 This will return the perceptual hash distance between the two provided phash values.
